@@ -1,0 +1,7 @@
+[build]
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/obtener-tarea"
+  to = "/.netlify/functions/obtenerTarea"
+  status = 200
