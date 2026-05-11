@@ -67,7 +67,15 @@ function getCustomFieldValue(cf) {
   return cf.value ?? null;
 }
 
-export async function handler(event) {
+exports.handler = async function handler(event) {
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 204,
+      headers: corsHeaders(),
+      body: ''
+    };
+  }
+
   const {
     task_id,
     id,
@@ -141,7 +149,18 @@ export async function handler(event) {
 function json(statusCode, obj) {
   return {
     statusCode,
-    headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+    headers: {
+      "Content-Type": "application/json",
+      ...corsHeaders()
+    },
     body: JSON.stringify(obj)
+  };
+}
+
+function corsHeaders() {
+  return {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    "Access-Control-Allow-Methods": "GET, OPTIONS"
   };
 }
