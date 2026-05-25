@@ -2,6 +2,16 @@
   functions = "netlify/functions"
 
 [[redirects]]
+  from = "/api/obtener-tarea-clickup"
+  to = "/.netlify/functions/obtenerTareaClickUp"
+  status = 200
+
+[[redirects]]
+  from = "/api/obtener-tarea-supabase"
+  to = "/.netlify/functions/obtenerTareaSupabase"
+  status = 200
+
+[[redirects]]
   from = "/api/obtener-tarea"
-  to = "/.netlify/functions/obtenerTarea"
+  to = "/.netlify/functions/obtenerTareaClickUp"
   status = 200
